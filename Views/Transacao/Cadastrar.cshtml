@@ -5,6 +5,7 @@
     <title>Cadastro Transações</title>
 </head>
 <body>
+    <h1>Cadastrar Transação</h1>
     @ViewBag.Mensagem   
     <form action="/Transacao/Cadastrar" method="POST">
         <H1>TRANSAÇÃO AAAAA</H1>
@@ -17,12 +18,12 @@
         <label>Tipo de transação</label>
             <label>
                 <input type="radio" name ="TipoTransacao" value = "Despesa" checked> Despesa
-                <input type="radio" name ="TipoTransacao" value ="Receita"> Receita
+                <input type="radio" name ="TipoTransacao" value = "Receita"> Receita
             </label>
         <label>Data Da transação :
             <input type="date" name="DataTransacao">
         </label>
-        <input class = "btn" type="submit" value="Enviar">
+        <input id = "btn" type="submit" value="Enviar">
     </form>
 </body>
 </html>

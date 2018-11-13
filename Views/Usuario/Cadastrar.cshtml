@@ -1,34 +1,32 @@
 @{
-    Layout = "index";
+    Layout = "MasterPageDeslogado";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Page Title</title>
+    <title>Cadastrar Usuario</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
-    @ViewBag.Mensagem
-
-    <div class= "fundo">
-            <h1>Formulario Usuario</h1>
+    <h1>Cadastrar Usuario</h1>
+    <div class="fundo">
+        @ViewBag.Mensagem
         <form action = "/Usuario/Cadastrar" method="POST">
-            <label>Nome :
+            <label>Nome
                 <input type="text" maxlength="30" name = "Nome">
             </label>
-            <label>Email :
+            <label>Email
                 <input type="email" name="Email">
             </label>
-            <label>Senha :
+            <label>Senha
                 <input type="text" minlength="8" name = "Senha">
             </label>
-            <label>Data De Nascimento :
+            <label>Data De Nascimento
                 <input type="date" name="DataNascimento">
             </label>
-            <input type="submit" value="Enviar">
+            <input id = "btn" type="submit" value="Enviar">
         </form>
     </div>
 </body>

@@ -1,5 +1,5 @@
 @{
-    Layout = "index";
+    Layout = "MasterPageDeslogado";
 }
 <!DOCTYPE html>
 <html>
@@ -7,15 +7,18 @@
     <title>Login Usuario</title>
 </head>
 <body>
-    @ViewBag.Mensagem
-    <form action="/Usuario/Login" method = "POST">
-        <label> Email : 
-            <input type="email" name="Email" maxlength="30" placeholder="email@provedor.com">
-        </label>
-        <label>Senha :
-            <input type="password" minlength="8" name = "Senha" placeholder="Senha">
-        </label>
-        <input type="submit" value="Enviar">
-    </form>
+    <h1>Logar Usuario</h1>
+    <div class="fundo">
+        @ViewBag.Mensagem
+        <form action="/Usuario/Login" method = "POST">
+            <label> Email 
+                <input type="email" name="Email" maxlength="30" placeholder="email@provedor.com">
+            </label>
+            <label>Senha
+                <input type="password" minlength="8" name = "Senha" placeholder="Senha">
+            </label>
+            <input id="btn" type="submit" value="Enviar">
+        </form>
+    </div>
 </body>
 </html>
