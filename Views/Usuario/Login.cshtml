@@ -1,0 +1,21 @@
+@{
+    Layout = "index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Usuario</title>
+</head>
+<body>
+    @ViewBag.Mensagem
+    <form action="/Usuario/Login" method = "POST">
+        <label> Email : 
+            <input type="email" name="Email" maxlength="30" placeholder="email@provedor.com">
+        </label>
+        <label>Senha :
+            <input type="password" minlength="8" name = "Senha" placeholder="Senha">
+        </label>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>

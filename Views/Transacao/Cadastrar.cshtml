@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cadastro Transações</title>
+</head>
+<body>
+    @ViewBag.Mensagem   
+    <form action="/Transacao/Cadastrar" method="POST">
+        <H1>TRANSAÇÃO AAAAA</H1>
+        <label>Descrição da Transação :
+            <input type="text" name = "Descricao">
+        </label>
+        <label>Valor (R$) :
+            <input type="number" name="Valor">
+        </label>
+        <label>Tipo de transação</label>
+            <label>
+                <input type="radio" name ="TipoTransacao" value = "Despesa" checked> Despesa
+                <input type="radio" name ="TipoTransacao" value ="Receita"> Receita
+            </label>
+        <label>Data Da transação :
+            <input type="date" name="DataTransacao">
+        </label>
+        <input class = "btn" type="submit" value="Enviar">
+    </form>
+</body>
+</html>
