@@ -17,7 +17,7 @@ namespace ProjetoFinancas
         {
             services.AddMvc();
             services.AddSession(
-                options => options.IdleTimeout = TimeSpan.FromSeconds(20)
+                options => options.IdleTimeout = TimeSpan.FromMinutes(20)
             );
         }
 
