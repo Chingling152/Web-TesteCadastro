@@ -8,6 +8,7 @@ namespace Web_TesteCadastroMVC.Controllers
 {
     public class TransacaoController : Controller
     {
+        private int contador = System.IO.File.Exists("Databases/Transacao.csv")?System.IO.File.ReadAllLines("Databases/Transacao.csv").Length +1 : 1;
         [HttpGet]
         public ActionResult Cadastrar(){
             if(string.IsNullOrEmpty(HttpContext.Session.GetString("emailUsuario"))){
@@ -19,7 +20,7 @@ namespace Web_TesteCadastroMVC.Controllers
         [HttpPost]
         public ActionResult Cadastrar(IFormCollection formulario){
             Transacao tra = new Transacao(){
-                NumeroTransacao = System.IO.File.ReadAllLines("Databases/Transacao.csv").Length+1,
+                NumeroTransacao = contador++,
                 Descricao = formulario["Descricao"],
                 valor = double.Parse(formulario["Valor"]),
                 tipo = formulario["TipoTransacao"],

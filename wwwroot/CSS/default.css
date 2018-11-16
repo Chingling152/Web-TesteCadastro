@@ -1,15 +1,51 @@
+/*Abstrato*/
 *{
     box-sizing: border-box;
     margin:0px;
     padding:0px;
-    cursor: default;
     font-size: 14px;
+    color:white;
+    font-family: 'Source Code Pro', monospace;
+    background-color: #090f35;
 }
 
-body{
-    background-color: black;
+
+.flex-column{
+    margin:0px auto;
+    display:flex;
+    flex-direction: column;
+}
+
+/*Tags*/
+section h1{
+    font-size: 1.3em;
+    margin:1em 0em;
+    text-align: center;
 }
 
 form{
     border: 1px solid white;
+    width: 25em;
+    padding: 1em;
+    align-items: center;
 }
+
+form *{
+    margin:0.25em 0em;
+}
+
+/*Classes*/
+/*Links Pagina Deslogado*/
+.cadastro-nav{
+    margin: 1em auto;
+    align-items: baseline;
+}
+
+.cadastro-nav *{
+    margin: 0.15em 0em;
+}
+
+.cadastro-nav a:hover{
+    font-weight: 800;
+}
+/*IDS*/

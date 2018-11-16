@@ -9,11 +9,11 @@
     <title>Cadastrar Usuario</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-    <h1>Cadastrar Usuario</h1>
-    <div class="fundo">
+<body class="flex-column">    
+    <section>
+        <h1>Cadastrar Usuario</h1>
         @ViewBag.Mensagem
-        <form action = "/Usuario/Cadastrar" method="POST">
+        <form action = "/Usuario/Cadastrar" method="POST" class="flex-column">
             <label>Nome
                 <input type="text" maxlength="30" name = "Nome">
             </label>
@@ -28,6 +28,6 @@
             </label>
             <input id = "btn" type="submit" value="Enviar">
         </form>
-    </div>
+    </section>
 </body>
 </html>

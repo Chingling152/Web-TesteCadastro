@@ -9,14 +9,15 @@ namespace Web_TesteCadastroMVC.Controllers
 {
     public class UsuarioController : Controller
     {
+
+        private int contador = System.IO.File.Exists("Databases/Usuario.csv")?System.IO.File.ReadAllLines("Databases/Usuario.csv").Length +1 : 1;
         [HttpGet]
         public ActionResult Cadastrar()=> View();
         
         [HttpPost]
         public ActionResult Cadastrar(IFormCollection form){
-
             Usuario usuario = new Usuario(){
-                ID = System.IO.File.ReadAllLines("Databases/Usuario.csv").Length+1,
+                ID = contador++,
                 Nome = form["Nome"],
                 Email = form["Email"],
                 Senha = form["Senha"],
