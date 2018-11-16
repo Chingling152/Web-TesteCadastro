@@ -3,9 +3,9 @@ using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using ProjetoFinancas.Models;
+using Web_TesteCadastroMVC.Models;
 
-namespace Senai.web.tarefas.Controllers
+namespace Web_TesteCadastroMVC.Controllers
 {
     public class UsuarioController : Controller
     {
@@ -35,9 +35,11 @@ namespace Senai.web.tarefas.Controllers
                 return View();
             }
         }
-
+        
+        [HttpGet]
         public ActionResult Login()=> View();
 
+        [HttpPost]
         public ActionResult Login(IFormCollection form){
             Usuario usuario = new Usuario(){
                 Email = form["Email"],

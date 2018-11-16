@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Projeto.Financas.Transacoes.Models;
+using Web_TesteCadastroMVC.Models;
 
-namespace Projeto.Financas.Transacoes.Controllers
+namespace Web_TesteCadastroMVC.Controllers
 {
     public class TransacaoController : Controller
     {
@@ -19,7 +19,7 @@ namespace Projeto.Financas.Transacoes.Controllers
         [HttpPost]
         public ActionResult Cadastrar(IFormCollection formulario){
             Transacao tra = new Transacao(){
-                NumeroTransacao = new System.Random().Next(1000,100000),
+                NumeroTransacao = System.IO.File.ReadAllLines("Databases/Transacao.csv").Length+1,
                 Descricao = formulario["Descricao"],
                 valor = double.Parse(formulario["Valor"]),
                 tipo = formulario["TipoTransacao"],
@@ -43,7 +43,7 @@ namespace Projeto.Financas.Transacoes.Controllers
         [HttpPost]
         public ActionResult Mostrar(IFormCollection formulario){
             List<Transacao> transacoes = new List<Transacao>();
-            StreamReader reader = new StreamReader("Transacao.csv",true);
+            StreamReader reader = new StreamReader("Databases/Transacao.csv",true);
 
             List<string> nomes = new List<string>();
 

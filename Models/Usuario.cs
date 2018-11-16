@@ -1,4 +1,4 @@
-namespace ProjetoFinancas.Models
+namespace Web_TesteCadastroMVC.Models
 {
     public class Usuario
     {
