@@ -1,13 +1,12 @@
-@{
-    Layout = "MasterPageDeslogado";
-}
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title>Cadastrar Usuario</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/CSS/CadastrarUsuario.css"/>
+    @{
+        Layout = "MasterPageDeslogado";
+    }
 </head>
 <body class="flex-column">    
     <section>
@@ -15,17 +14,26 @@
         @ViewBag.Mensagem
         <form action = "/Usuario/Cadastrar" method="POST" class="flex-column">
             <label>Nome
-                <input type="text" maxlength="30" name = "Nome">
+                <input type="text" maxlength="50" name = "Nome" placeholder="Ex :João da Silva" required>
             </label>
             <label>Email
-                <input type="email" name="Email">
+                <input type="email" name="Email" placeholder="Ex : joaodasilva@hotmail.com" required>
             </label>
             <label>Senha
-                <input type="text" minlength="8" name = "Senha">
+                <input type="text" minlength="8" name = "Senha" required placeholder="Ex : A6ef28R4f ">
             </label>
             <label>Data De Nascimento
-                <input type="date" name="DataNascimento">
+                <input type="date" name="DataNascimento" required>
             </label>
+            <label> Privilegios</label>
+            <div id="privilegios">
+                <label>
+                    <input type="radio" name="Tipo" value="Usuario" checked> Usuario normal
+                </label>    
+                <label>
+                    <input type="radio" name="Tipo" value="Administrador"> Administrador
+                </label>
+            </div>
             <input id = "btn" type="submit" value="Enviar">
         </form>
     </section>

@@ -6,11 +6,11 @@
 <head>
     <title>Login Usuario</title>
 </head>
-<body>
-    <h1>Logar Usuario</h1>
-    <div class="fundo">
+<body class="flex-column">
+    <section>
+        <h1>Logar Usuario</h1>
         @ViewBag.Mensagem
-        <form action="/Usuario/Login" method = "POST">
+        <form action="/Usuario/Login" method = "POST" class="flex-column">
             <label> Email 
                 <input type="email" name="Email" maxlength="30" placeholder="email@provedor.com">
             </label>
@@ -19,6 +19,6 @@
             </label>
             <input id="btn" type="submit" value="Enviar">
         </form>
-    </div>
+    </section>
 </body>
 </html>

@@ -19,7 +19,7 @@ namespace Web_TesteCadastroMVC.Controllers
             Usuario usuario = new Usuario(){
                 ID = contador++,
                 Nome = form["Nome"],
-                Email = form["Email"],
+                Email = form["Email"].ToString().ToLower(),
                 Senha = form["Senha"],
                 Tipo = form["Tipo"],
                 DataNascimento = DateTime.Parse(form["DataNascimento"])
@@ -28,7 +28,7 @@ namespace Web_TesteCadastroMVC.Controllers
 
             if(mensagem == $"Usuario {usuario.Nome} cadastrado com sucesso"){
                 using(StreamWriter sw = new StreamWriter("Databases/Usuario.csv",true)){
-                    sw.WriteLine($"{usuario.Nome};{usuario.Email};{usuario.Senha};{usuario.Tipo};{usuario.DataNascimento}");
+                    sw.WriteLine($"{usuario.ID};{usuario.Nome};{usuario.Email};{usuario.Senha};{usuario.Tipo};{usuario.DataNascimento}");
                 }
                 return RedirectToAction("Login","Usuario");
             }else{
@@ -51,14 +51,14 @@ namespace Web_TesteCadastroMVC.Controllers
                 while(!leitor.EndOfStream){
                     string[] info = leitor.ReadLine().Split(';');
 
-                    if(usuario.Email == info[2]  && usuario.Senha == info[3]){
+                    if(usuario.Email == info[2].ToLower()  && usuario.Senha == info[3]){
                         HttpContext.Session.SetString("ID",usuario.ID.ToString());
                         return RedirectToAction("Criar","Tarefa");
                     }
                 }
             }
 
-            return RedirectToAction("Logar","Usuario");
+            return RedirectToAction("Login","Usuario");
         }  
 
         private string tudoOK(Usuario user){

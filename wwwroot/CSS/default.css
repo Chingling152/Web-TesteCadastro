@@ -9,43 +9,50 @@
     background-color: #090f35;
 }
 
-
 .flex-column{
     margin:0px auto;
     display:flex;
     flex-direction: column;
 }
 
-/*Tags*/
+/*Header*/
 section h1{
     font-size: 1.3em;
     margin:1em 0em;
     text-align: center;
 }
 
+/*Formulario*/
 form{
-    border: 1px solid white;
+    border: 2px solid white;
     width: 25em;
     padding: 1em;
     align-items: center;
 }
 
 form *{
-    margin:0.25em 0em;
+    width: 100%;
+    margin:0.35em 0em;
 }
 
-/*Classes*/
+form input{
+    border: 3px solid white;
+}
+
+form input:hover , form input:focus{
+    border-color:rgba(255, 255, 255, 0.445);
+    color:rgba(255, 255, 255, 0.445);
+}
+
 /*Links Pagina Deslogado*/
 .cadastro-nav{
     margin: 1em auto;
-    align-items: baseline;
 }
 
-.cadastro-nav *{
-    margin: 0.15em 0em;
+.cadastro-nav > a{
+    text-decoration: none;
 }
 
-.cadastro-nav a:hover{
+.cadastro-nav a:hover , .cadastro-nav a:focus{
     font-weight: 800;
 }
-/*IDS*/
