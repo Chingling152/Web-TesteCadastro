@@ -37,9 +37,9 @@ namespace Web_TesteCadastroMVC.Controllers
                 sw.WriteLine($"{tarefa.ID};{tarefa.Titulo};{tarefa.Descricao};{tarefa.Status};{tarefa.DataInicio};{tarefa.GetDataEntrega};{tarefa.IDUsuario}");
             }
 
-            ViewBag.Mensagem = $"Tarefa {tarefa.IDUsuario} Cadastrado com sucesso!";
+            ViewBag.Mensagem = $"Tarefa {tarefa.Titulo} Cadastrada no ID {tarefa.ID} com sucesso!";
             
-            return View();
+            return RedirectToAction("Logado","Usuario");
         }
     }
 }

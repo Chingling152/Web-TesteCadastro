@@ -15,6 +15,11 @@
     flex-direction: column;
 }
 
+p{
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
 /*Header*/
 section h1{
     font-size: 1.3em;
@@ -55,4 +60,21 @@ form input:hover , form input:focus{
 
 .cadastro-nav a:hover , .cadastro-nav a:focus{
     font-weight: 800;
+}
+
+/*Grupo de radio button*/
+#radio-group{
+    display: flex;
+    border:1px solid white; 
+}
+
+#radio-group label{
+    text-align: center;
+}
+
+/*Sai daqui ;-;*/
+#hidden{
+    color :#090f35;
+    display: none;
+    width: 0px;
 }

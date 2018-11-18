@@ -1,15 +1,15 @@
-@{
-    Layout = "MasterPageDeslogado";
-}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Login Usuario</title>
+    @{
+        Layout = "MasterPageDeslogado";
+    }   
 </head>
 <body class="flex-column">
     <section>
         <h1>Logar Usuario</h1>
-        @ViewBag.Mensagem
+        <p>@ViewBag.Mensagem</p>
         <form action="/Usuario/Login" method = "POST" class="flex-column">
             <label> Email 
                 <input type="email" name="Email" maxlength="30" placeholder="email@provedor.com">
@@ -17,8 +17,9 @@
             <label>Senha
                 <input type="password" minlength="8" name = "Senha" placeholder="Senha">
             </label>
-            <input id="btn" type="submit" value="Enviar">
+            <input type="submit" value="Entrar">
         </form>
     </section>
+    <p id = "hidden" class="flex-column">Descanso é conforto<br>A facilidade é conforto<br>Ambos nascidos do esforço.</p>
 </body>
 </html>

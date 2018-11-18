@@ -11,10 +11,13 @@ namespace Web_TesteCadastroMVC.Controllers
         private int contador = System.IO.File.Exists("Databases/Transacao.csv")?System.IO.File.ReadAllLines("Databases/Transacao.csv").Length +1 : 1;
         [HttpGet]
         public ActionResult Cadastrar(){
-            if(string.IsNullOrEmpty(HttpContext.Session.GetString("emailUsuario"))){
+            string id = HttpContext.Session.GetString("ID");
+            
+            if(string.IsNullOrEmpty(id) || id != "0"){
                 return RedirectToAction("Login","Usuario");
+            }else{
+                return View();
             }
-            return View();
         }        
 
         [HttpPost]

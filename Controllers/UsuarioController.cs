@@ -11,8 +11,13 @@ namespace Web_TesteCadastroMVC.Controllers
     {
 
         private int contador = System.IO.File.Exists("Databases/Usuario.csv")?System.IO.File.ReadAllLines("Databases/Usuario.csv").Length +1 : 1;
+       
+        #region Cadastrar
         [HttpGet]
-        public ActionResult Cadastrar()=> View();
+        public ActionResult Cadastrar(){
+            ViewBag.Mensagem = "";
+            return View();
+        }
         
         [HttpPost]
         public ActionResult Cadastrar(IFormCollection form){
@@ -36,7 +41,9 @@ namespace Web_TesteCadastroMVC.Controllers
                 return View();
             }
         }
+        #endregion
         
+        #region Logar
         [HttpGet]
         public ActionResult Login()=> View();
 
@@ -47,18 +54,24 @@ namespace Web_TesteCadastroMVC.Controllers
                 Senha = form["Senha"]
             };
 
+            bool flag = false;
             using(StreamReader leitor = new StreamReader("Databases/Usuario.csv")){
                 while(!leitor.EndOfStream){
                     string[] info = leitor.ReadLine().Split(';');
 
                     if(usuario.Email == info[2].ToLower()  && usuario.Senha == info[3]){
+                        flag = true;
                         HttpContext.Session.SetString("ID",usuario.ID.ToString());
-                        return RedirectToAction("Criar","Tarefa");
+                        ViewBag.Mensagem = $"Seja bem vindo {usuario.Nome} !";
+                        return RedirectToAction("Logado","Usuario");
                     }
                 }
             }
 
-            return RedirectToAction("Login","Usuario");
+            if(!flag) 
+                ViewBag.Mensagem = "Email ou senha incorretos";
+
+            return View();
         }  
 
         private string tudoOK(Usuario user){
@@ -70,6 +83,20 @@ namespace Web_TesteCadastroMVC.Controllers
             }
             return $"Usuario {user.Nome} cadastrado com sucesso";
         }
+        #endregion
+
+        #region Logado
+        [HttpGet]
+        public ActionResult Logado(){
+            string id = HttpContext.Session.GetString("ID"); 
+
+            if(string.IsNullOrEmpty(id) || id != "0"){
+                return RedirectToAction("Login","Usuario");
+            }else{
+                return View();
+            }
+        }
+        #endregion
     }
 
 }

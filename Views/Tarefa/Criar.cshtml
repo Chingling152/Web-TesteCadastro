@@ -2,35 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Criar Tarefas</title>
+    <link rel="stylesheet" href="/CSS/CriarTarefa.css"/>
     @{
         Layout = "MasterPageLogado";
     }
-    <title>Criar Tarefas</title>
 </head>
-<body >
-section.
-    <form action="Tarefa\Criar" method="POST">
-        <label> 
-            Nome : <input type="text" name="Nome">
-        </label>
-        <label>
-            Descrição : <Textarea name="Descricao" maxlength="300" required></Textarea>
-        </label>
-        <label> 
-            Status :     
-            <label>   
-                <input type="radio" name="Status" value="Para Fazer"> Para Fazer
+<body class="flex-column">
+    <section>
+        <h1>Criar Tarefas</h1>
+        <form action="Tarefa\Criar" method="POST" class="flex-column">
+            <label> 
+                Titulo<input type="text" name="Titulo" required>
             </label>
-            <label>   
-                <input type="radio" name="Status" value="Fazendo"> Fazendo
+            <label>
+                Descrição<Textarea name="Descricao" maxlength="500" required></Textarea>
             </label>
-            <label>   
-                <input type="radio" name="Status" value="Concluido"> Concluido
+            <label>Status</label>   
+            <div id="radio-group">
+                <label>   
+                    <input type="radio" name="Status" value="Para Fazer" checked> Para Fazer
+                </label>
+                <label>   
+                    <input type="radio" name="Status" value="Fazendo"> Fazendo
+                </label>
+                <label>   
+                    <input type="radio" name="Status" value="Concluido"> Concluido
+                </label>
+            </div>
+            <label>Data de entrega
+                <input type="date" name="Data">
             </label>
-        </label>
-        <label>Data de entrega :
-            <input type="date" name="Data">
-        </label>
-    </form>
+            <input id = "btn" type="submit" value="Criar Tarefa">
+        </form>
+    </section>
 </body>
 </html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="PT">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina Inicial</title>
+    @{
+        Layout = "MasterPageLogado";
+    }  
+</head>
+<body class="flex-column">
+    <section>
+        <h1>
+            @ViewBag.Nome
+        </h1>
+        <h1>O Que deseja fazer?</h1>
+    </section>
+    <p id="hidden">
+        Ele diz coisas que os adultos esquecem<br>
+        E que as crianças não tem palavras para descrever
+    </p>
+</body>
+</html>

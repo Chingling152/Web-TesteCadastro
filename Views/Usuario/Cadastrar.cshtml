@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="PT-BR">
 <head>
     <meta charset="utf-8" />
     <title>Cadastrar Usuario</title>
-    <link rel="stylesheet" href="/CSS/CadastrarUsuario.css"/>
     @{
         Layout = "MasterPageDeslogado";
     }
@@ -26,15 +25,15 @@
                 <input type="date" name="DataNascimento" required>
             </label>
             <label> Privilegios</label>
-            <div id="privilegios">
+            <div id="radio-group">
                 <label>
                     <input type="radio" name="Tipo" value="Usuario" checked> Usuario normal
                 </label>    
                 <label>
-                    <input type="radio" name="Tipo" value="Administrador"> Administrador
+                    <input type="radio" name="Tipo" value="Administrador" disabled> Administrador
                 </label>
             </div>
-            <input id = "btn" type="submit" value="Enviar">
+            <input type="submit" value="Cadastrar-se">
         </form>
     </section>
 </body>
