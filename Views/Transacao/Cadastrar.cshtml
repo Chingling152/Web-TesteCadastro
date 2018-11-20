@@ -5,25 +5,27 @@
     <meta charset="utf-8" />
     <title>Cadastro Transações</title>
 </head>
-<body>
-    <h2>Cadastrar Transação</h2>
-    <p>@ViewBag.Mensagem</p>   
-    <form action="/Transacao/Cadastrar" method="POST">
-        <label>Descrição da Transação :
-            <input type="text" name = "Descricao">
-        </label>
-        <label>Valor (R$) :
-            <input type="number" name="Valor">
-        </label>
-        <label>Tipo de transação</label>
-            <label>
-                <input type="radio" name ="TipoTransacao" value = "Despesa" checked> Despesa
-                <input type="radio" name ="TipoTransacao" value = "Receita"> Receita
+<body class="flex-column">
+    <section>
+        <h1>Cadastrar Transação</h1>
+        <p>@ViewBag.Mensagem</p>   
+        <form action="/Transacao/Cadastrar" method="POST" class="flex-column">
+            <label>Descrição da Transação :
+                <input type="text" name = "Descricao" required>
             </label>
-        <label>Data Da transação :
-            <input type="date" name="DataTransacao">
-        </label>
-        <input id = "btn" type="submit" value="Enviar">
-    </form>
+            <label>Valor (R$) :
+                <input type="number" name="Valor" required>
+            </label>
+            <label>Tipo de transação</label>
+                <label>
+                    <input type="radio" name ="TipoTransacao" value = "Despesa" checked> Despesa
+                    <input type="radio" name ="TipoTransacao" value = "Receita"> Receita
+                </label>
+            <label>Data Da transação :
+                <input type="date" name="DataTransacao" required>
+            </label>
+            <input id = "btn" type="submit" value="Enviar">
+        </form>
+    </section>
 </body>
 </html>

@@ -22,18 +22,25 @@ namespace Web_TesteCadastroMVC.Controllers
 
         [HttpPost]
         public ActionResult Cadastrar(IFormCollection formulario){
-            Transacao tra = new Transacao(){
-                NumeroTransacao = contador++,
-                Descricao = formulario["Descricao"],
-                valor = double.Parse(formulario["Valor"]),
-                tipo = formulario["TipoTransacao"],
-                data = System.DateTime.Parse(formulario["DataTransacao"])
-            };
-            using(StreamWriter sw = new StreamWriter("Transacao.csv",true)){
-                sw.WriteLine($"{tra.NumeroTransacao};{tra.Descricao};{tra.tipo};{tra.valor};{tra.data}");
+            string id = HttpContext.Session.GetString("ID");
+
+            if(string.IsNullOrEmpty(id) || id != "0"){
+                return RedirectToAction("Login","Usuario");
+            }else{
+                Transacao tra = new Transacao(){
+                    NumeroTransacao = contador++,
+                    Descricao = formulario["Descricao"],
+                    valor = double.Parse(formulario["Valor"]),
+                    tipo = formulario["TipoTransacao"],
+                    data = System.DateTime.Parse(formulario["DataTransacao"]),
+                    IDUsuario = int.Parse(id)
+                };
+                using(StreamWriter sw = new StreamWriter("Databases/Transacao.csv",true)){
+                    sw.WriteLine($"{tra.NumeroTransacao};{tra.Descricao};{tra.tipo};{tra.valor};{tra.data}");
+                }
+                ViewBag.Mensagem = $"Transação {tra.NumeroTransacao} cadastrada com sucesso!";
+                return View();
             }
-            ViewBag.Mensagem = $"Transação {tra.NumeroTransacao} cadastrada com sucesso!";
-            return View();
         }
 
         [HttpGet]

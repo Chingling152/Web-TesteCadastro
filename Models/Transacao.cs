@@ -7,5 +7,6 @@ namespace Web_TesteCadastroMVC.Models
         public double valor;
         public string tipo;
         public System.DateTime data;
+        public int IDUsuario;
     }
 }

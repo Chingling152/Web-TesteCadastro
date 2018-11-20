@@ -44,7 +44,7 @@ namespace AspNetCore
             WriteLiteral("<!DOCTYPE html>\r\n<html>\r\n");
             EndContext();
             BeginContext(25, 108, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "657bf2300557457ca2c239c3311eb522", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "84eecea2b289468bbd1219d310a035a8", async() => {
                 BeginContext(31, 36, true);
                 WriteLiteral("\r\n    <title>Login Usuario</title>\r\n");
                 EndContext();
@@ -71,7 +71,7 @@ namespace AspNetCore
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(135, 685, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "06f3e1afdb874004a9fae92e68c0cbe9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1225c30243734af3a898d94e5226abdd", async() => {
                 BeginContext(161, 60, true);
                 WriteLiteral("\r\n    <section>\r\n        <h1>Logar Usuario</h1>\r\n        <p>");
                 EndContext();
