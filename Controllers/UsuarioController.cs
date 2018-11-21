@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Web_TesteCadastroMVC.Models;
+using Web_TesteCadastroMVC.Util;
 
 namespace Web_TesteCadastroMVC.Controllers
 {
@@ -15,10 +16,8 @@ namespace Web_TesteCadastroMVC.Controllers
 
         #region Cadastrar
         [HttpGet]
-        public ActionResult Cadastrar(){
-            ViewBag.Mensagem = "";
-            return View();
-        }
+        public ActionResult Cadastrar()=> View();
+
         
         [HttpPost]
         public ActionResult Cadastrar(IFormCollection form){
@@ -30,7 +29,7 @@ namespace Web_TesteCadastroMVC.Controllers
                 Tipo = form["Tipo"],
                 DataNascimento = DateTime.Parse(form["DataNascimento"])
             };  
-            string mensagem = tudoOK(usuario);
+            string mensagem = Validacao.LoginUsuario(usuario);
 
             if(mensagem == $"Usuario {usuario.Nome} cadastrado com sucesso"){
                 using(StreamWriter sw = new StreamWriter(caminho,true)){
@@ -49,11 +48,9 @@ namespace Web_TesteCadastroMVC.Controllers
         public ActionResult Login()=> View();
 
         [HttpPost]
-        public ActionResult Login(IFormCollection form){
-            Usuario usuario = new Usuario(){
-                Email = form["Email"],
-                Senha = form["Senha"]
-            };
+        public ActionResult Login(IFormCollection form) {    
+            string Email = form["Email"].ToString().ToLower();
+            string Senha = form["Senha"].ToString().ToLower();   
 
             bool flag = false;
 
@@ -61,12 +58,13 @@ namespace Web_TesteCadastroMVC.Controllers
                 while(!leitor.EndOfStream){
                     string[] info = leitor.ReadLine().Split(';');
 
-                    if(usuario.Email == info[2].ToLower()  && usuario.Senha == info[3].ToLower()){
+                    if(Email == info[2].ToLower() && Senha == info[3].ToLower()){
                         flag = true;
-                        //usuario.ID = int.Parse(info[0]);
+
+                        Usuario usuario = Validacao.ProcurarUsuario(info[0]);
+                        
                         HttpContext.Session.SetString("ID",usuario.ID.ToString());
-                        //ViewData["Usuario"] = usuario;
-                        ViewBag.Mensagem = $"Seja bem vindo {usuario.Nome} !";
+                        
                         return RedirectToAction("Logado","Usuario");
                     }
                 }
@@ -79,60 +77,67 @@ namespace Web_TesteCadastroMVC.Controllers
         }  
         #endregion
 
-        #region Validações
-        private static string tudoOK(Usuario user){
-            if(string.IsNullOrEmpty(user.Nome)){
-                return "Nome invalido!!";
-            }
-            if(string.IsNullOrEmpty(user.Senha)){
-                return "Senha invalida!!";
-            }
-            return $"Usuario {user.Nome} cadastrado com sucesso";
-        }
-
-        public static bool Admin(Usuario user){
-            if(user.Tipo == "Administrador"){
-                return true;
-            }else{
-                return false;
-            }
-        }
-
-        public static Usuario Procurar(int id){
-            
-            Usuario usuario = new Usuario();
-
-            using(StreamReader leitor = new StreamReader(caminho)){
-                while(!leitor.EndOfStream){
-                    string[] info = leitor.ReadLine().Split(';');
-                    
-                    if(id.ToString() == info[0]){
-                        usuario.ID = int.Parse(info[0]);
-                        usuario.Nome = info[1];
-                        usuario.Email = info[2];
-                        usuario.Senha = info[3];
-                        usuario.Tipo = info[4];
-                        usuario.DataNascimento = DateTime.Parse(info[5]);
-                        break;
-                    }
-                }
-            }
-            return usuario;
-        }
-        #endregion
-
-        #region Logado
         [HttpGet]
         public ActionResult Logado(){
             id = HttpContext.Session.GetString("ID"); 
 
-            if(string.IsNullOrEmpty(id) || id != "0"){
+            if(string.IsNullOrEmpty(id) || id == "0"){
                 return RedirectToAction("Login","Usuario");
             }else{
+                Usuario user = Validacao.ProcurarUsuario(id);
+
+                ViewData["TipoUsuario"] = user.Tipo;
+                ViewBag.Mensagem = $"Seja bem vindo {user.Nome}!";
+
                 return View();
             }
         }
-        #endregion
-    }
 
+        [HttpGet]
+        public ActionResult Mostrar(){
+            id = HttpContext.Session.GetString("ID");
+
+            List<Usuario> usuario = new List<Usuario>();
+
+            string[] linhas = System.IO.File.ReadAllLines(caminho);
+
+            foreach (string item in linhas)
+            {
+                if(string.IsNullOrEmpty(item)){
+                    continue;
+                }else{
+                    Usuario user = Validacao.ProcurarUsuario(item.Split(";")[0]);
+
+                    if(user !=null){
+                        usuario.Add(user);
+                    }
+                }
+            }
+
+            ViewData["Usuarios"] = usuario;
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Excluir(int ID){
+            string[] linhas = System.IO.File.ReadAllLines(caminho);
+            id = HttpContext.Session.GetString("ID");
+
+            for (int i = 0; i < linhas.Length; i++)
+            {
+                string[] linha = linhas[i].Split(";");
+
+                if(ID.ToString() == linha[0]){
+                    ViewBag.Mensagem = $"Tarefa no id {id} deletado com sucesso";
+                    linhas[i] = "";
+                }
+            }
+
+            System.IO.File.WriteAllLines(caminho,linhas);
+
+            return RedirectToAction("Mostrar","Usuario");
+        }
+
+    }
 }

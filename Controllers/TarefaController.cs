@@ -66,23 +66,20 @@ namespace Web_TesteCadastroMVC.Controllers
 
                 string[] linha = item.Split(";");
 
-                if(!String.IsNullOrEmpty(linha[0])){ 
-                    if(linha[linha.Length-1] == id){
-                        tarefas.Add(
-                            new Tarefa(){
-                                ID = int.Parse(linha[0]),
-                                Titulo = linha[1],
-                                Descricao = linha[2],
-                                Status = linha[3],
-                                DataInicio = DateTime.Parse(linha[4]),
-                                SetDataEntrega = DateTime.Parse(linha[5]),
-                                IDUsuario = int.Parse(linha[6])
-                            }
-                        );
-                    }
+                if(!String.IsNullOrEmpty(linha[0]) && linha[linha.Length-1] == id){
+                    tarefas.Add(
+                        new Tarefa(){
+                            ID = int.Parse(linha[0]),
+                            Titulo = linha[1],
+                            Descricao = linha[2],
+                            Status = linha[3],
+                            DataInicio = DateTime.Parse(linha[4]),
+                            SetDataEntrega = DateTime.Parse(linha[5]),
+                            IDUsuario = int.Parse(linha[6])
+                        }
+                    );
                 }
             }
-
             ViewData["ListarTarefas"] = tarefas;
 
             return View();

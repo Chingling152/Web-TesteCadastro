@@ -113,3 +113,4 @@ C:\Users\47326175810\Desktop\Sprint 3\Web-TesteCadastroMVC\obj\Debug\netcoreapp2
 C:\Users\47326175810\Desktop\Sprint 3\Web-TesteCadastroMVC\obj\Debug\netcoreapp2.1\Razor\Views\Tarefa\Mostrar.g.cshtml.cs
 C:\Users\47326175810\Desktop\Sprint 3\Web-TesteCadastroMVC\obj\Debug\netcoreapp2.1\Razor\Views\Usuario\Logado.g.cshtml.cs
 C:\Users\47326175810\Desktop\Sprint 3\Web-TesteCadastroMVC\obj\Debug\netcoreapp2.1\Razor\Views\Tarefa\Excluir.g.cshtml.cs
+F:\o\Jogos\Outros\Meus Projetos\Sites\Web-TesteCadastroMVC\obj\Debug\netcoreapp2.1\Razor\Views\Usuario\Mostrar.g.cshtml.cs

@@ -10,13 +10,22 @@
 <body class="flex-column">
     <section>
         <h1>
-            @ViewBag.Nome
+            @ViewBag.Mensagem
         </h1>
         <h1>O Que deseja fazer?</h1>
+
+        <p id="hidden" class="flex-column">
+                Ele diz coisas que os adultos esquecem <br>
+                E que as crianças não tem palavras para descrever
+            </p>
+        
+            @if(ViewData["TipoUsuario"] as string == "Administrador"){
+                <nav class="flex-column">
+                    <h2>Comandos Administrador</h2>
+                    <a href="/Usuario/Mostrar">Mostrar Usuarios</a>
+                </nav>
+            }
     </section>
-    <p id="hidden">
-        Ele diz coisas que os adultos esquecem<br>
-        E que as crianças não tem palavras para descrever
-    </p>
+    
 </body>
 </html>

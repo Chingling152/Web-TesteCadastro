@@ -1,0 +1,45 @@
+@using Web_TesteCadastroMVC.Models;
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/CSS/Tabela.css">
+    <title>Mostrar Usuarios</title>
+    @{
+        Layout = "MasterPageLogado";
+    } 
+</head>
+<body class="flex-column">
+    <h1>@ViewBag.Mensagem</h1>
+    <table>
+        <caption>Usuarios</caption>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Nome</td>
+                <td>Email</td>
+                <td>Senha</td>
+                <td>Privilegio</td>
+                <td>Data de nascimento</td>
+                <td>Excluir</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in ViewData["Usuarios"] as List<Usuario>){
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Email</td>
+                    <td>@item.Senha</td>
+                    <td>@item.Tipo</td>
+                    <td>@item.DataNascimento</td>
+                    <td>
+                        <a href= "/Usuario/Excluir?id=@item.ID">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    
+    </table>
+</body>
+</html>

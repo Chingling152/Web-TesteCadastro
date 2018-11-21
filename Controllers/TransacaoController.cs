@@ -8,7 +8,8 @@ namespace Web_TesteCadastroMVC.Controllers
 {
     public class TransacaoController : Controller
     {
-        private int contador = System.IO.File.Exists("Databases/Transacao.csv")?System.IO.File.ReadAllLines("Databases/Transacao.csv").Length +1 : 1;
+        private const string caminho = "Databases/Transacao.csv";
+        private int contador = System.IO.File.Exists(caminho)?System.IO.File.ReadAllLines(caminho).Length +1 : 1;
         [HttpGet]
         public ActionResult Cadastrar(){
             string id = HttpContext.Session.GetString("ID");
@@ -35,9 +36,11 @@ namespace Web_TesteCadastroMVC.Controllers
                     data = System.DateTime.Parse(formulario["DataTransacao"]),
                     IDUsuario = int.Parse(id)
                 };
-                using(StreamWriter sw = new StreamWriter("Databases/Transacao.csv",true)){
-                    sw.WriteLine($"{tra.NumeroTransacao};{tra.Descricao};{tra.tipo};{tra.valor};{tra.data}");
+
+                using(StreamWriter sw = new StreamWriter(caminho,true)){
+                    sw.WriteLine($"{tra.NumeroTransacao};{tra.Descricao};{tra.tipo};{tra.valor};{tra.data};{tra.IDUsuario}");
                 }
+
                 ViewBag.Mensagem = $"Transação {tra.NumeroTransacao} cadastrada com sucesso!";
                 return View();
             }
@@ -45,7 +48,7 @@ namespace Web_TesteCadastroMVC.Controllers
 
         [HttpGet]
         public ActionResult Mostrar(){
-            if(string.IsNullOrEmpty(HttpContext.Session.GetString("emailUsuario"))){
+            if(string.IsNullOrEmpty(HttpContext.Session.GetString("ID"))){
                 return RedirectToAction("Login","Usuario");
             }
             return View();
@@ -53,8 +56,9 @@ namespace Web_TesteCadastroMVC.Controllers
 
         [HttpPost]
         public ActionResult Mostrar(IFormCollection formulario){
+
             List<Transacao> transacoes = new List<Transacao>();
-            StreamReader reader = new StreamReader("Databases/Transacao.csv",true);
+            StreamReader reader = new StreamReader(caminho,true);
 
             List<string> nomes = new List<string>();
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="PT-BR">
 <head>
     <title>Login Usuario</title>
     @{
@@ -12,10 +12,10 @@
         <p>@ViewBag.Mensagem</p>
         <form action="/Usuario/Login" method = "POST" class="flex-column">
             <label> Email 
-                <input type="email" name="Email" maxlength="30" placeholder="email@provedor.com">
+                <input type="email" name="Email" maxlength="30" placeholder="email@provedor.com" required>
             </label>
             <label>Senha
-                <input type="password" minlength="8" name = "Senha" placeholder="Senha">
+                <input type="password" minlength="8" name = "Senha" placeholder="Senha" required>
             </label>
             <input type="submit" value="Entrar">
         </form>

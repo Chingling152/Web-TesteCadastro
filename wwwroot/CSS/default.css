@@ -54,12 +54,16 @@ form input:hover , form input:focus{
     margin: 1em auto;
 }
 
-.cadastro-nav > a{
+a{
     text-decoration: none;
 }
 
-.cadastro-nav a:hover , .cadastro-nav a:focus{
+a:hover ,  a:focus{
     font-weight: 800;
+}
+
+h2{
+    text-align: center;
 }
 
 /*Grupo de radio button*/
