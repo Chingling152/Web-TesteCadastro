@@ -1,14 +1,20 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
-    <link rel="stylesheet" href="/CSS/MasterPageLogado.css"/>
     <link rel="stylesheet" href="/CSS/default.css"/>
+    <link rel="stylesheet" href="/CSS/MasterPageLogado.css"/>
 </head>
 <body>
     @RenderBody()
-    <nav class="cadastro-nav flex-column">
-        <a href="/Tarefa/Criar">Criar Tarefa</a> 
-        <a href="/Tarefa/Mostrar">Mostrar Tarefas</a>
-        <a href="/Transacao/Cadastrar">Cadastrar Transação</a> 
-        <a href="/Transacao/Mostrar">Mostrar Transações</a>
-    </nav>
+    <div class="nav-group">
+        <nav class="cadastro-nav flex-column">
+            <h1>Tarefas</h1>
+            <a href="/Tarefa/Criar">Criar Tarefa</a> 
+            <a href="/Tarefa/Mostrar">Mostrar Tarefas</a>
+        </nav>
+        <nav class="cadastro-nav flex-column">
+            <h1>Transações</h1>
+            <a href="/Transacao/Cadastrar">Cadastrar Transação</a> 
+            <a href="/Transacao/Mostrar">Mostrar Transações</a>
+        </nav>
+    </div>
 </body>

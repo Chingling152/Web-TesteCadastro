@@ -109,3 +109,7 @@ F:\o\Jogos\Outros\Meus Projetos\Sites\Web-TesteCadastroMVC\obj\Debug\netcoreapp2
 F:\o\Jogos\Outros\Meus Projetos\Sites\Web-TesteCadastroMVC\obj\Debug\netcoreapp2.1\ProjetoFinancas.Views.pdb
 F:\o\Jogos\Outros\Meus Projetos\Sites\Web-TesteCadastroMVC\obj\Debug\netcoreapp2.1\ProjetoFinancas.csproj.CopyComplete
 F:\o\Jogos\Outros\Meus Projetos\Sites\Web-TesteCadastroMVC\obj\Debug\netcoreapp2.1\Razor\Views\Usuario\Logado.g.cshtml.cs
+C:\Users\47326175810\Desktop\Sprint 3\Web-TesteCadastroMVC\obj\Debug\netcoreapp2.1\Razor\Views\Tarefa\Criar.g.cshtml.cs
+C:\Users\47326175810\Desktop\Sprint 3\Web-TesteCadastroMVC\obj\Debug\netcoreapp2.1\Razor\Views\Tarefa\Mostrar.g.cshtml.cs
+C:\Users\47326175810\Desktop\Sprint 3\Web-TesteCadastroMVC\obj\Debug\netcoreapp2.1\Razor\Views\Usuario\Logado.g.cshtml.cs
+C:\Users\47326175810\Desktop\Sprint 3\Web-TesteCadastroMVC\obj\Debug\netcoreapp2.1\Razor\Views\Tarefa\Excluir.g.cshtml.cs

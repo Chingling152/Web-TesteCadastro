@@ -1,15 +1,74 @@
+@using Web_TesteCadastroMVC.Models;
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Mostrar Tarefas</title>
-    <link rel="stylesheet" href="/CSS/default.css">
-    @{
-        Layout = "MasterPageLogado";
-    }
-</head>
-<body class="flex-column">
-    <section>
-        <h1>Em construção</h1>
-    </section>
-</body>
+    <head>
+        <title>Mostrar Tarefas</title>
+        
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+        <link rel="stylesheet" href="/CSS/default.css"/>
+        <link rel="stylesheet" href="/CSS/MostrarTarefa.css">
+        @{
+            Layout = "MasterPageLogado";
+        }
+    </head>
+
+    <body class="flex-column">
+        <table>
+            <caption>
+                <h1>Tarefas</h1>
+            </caption>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Titulo</td>
+                    <td>Descrição</td>
+                    <td>Status</td>
+                    <td>Inicio</td>
+                    <td>Prazo</td>
+                    <td>Excluir</td>
+                    <td>Editar</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in ViewData["ListarTarefas"] as List<Tarefa>){
+                    <tr>
+                        <td>
+                            @item.ID
+                        </td>
+                        <td>
+                            @item.Titulo
+                        </td>
+                        <td>
+                            @item.Descricao
+                        </td>
+                        <td>
+                            @item.Status
+                        </td>
+                        <td>
+                            @item.DataInicio
+                        </td>
+                        <td>
+                            @item.GetDataEntrega
+                        </td>
+                        <td>
+                            <a href="/Tarefa/Excluir?id=@item.ID">Excluir</a>
+                        </td>
+                        <td>
+                            <a href="/Tarefa/Editar?id=@item.ID">Editar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>
 </html>
+
+<!---
+<select>
+    @foreach(var item in ViewData["ListarTarefas"] as List<Tarefa>){
+        <option value = "item.Titulo">
+            @item.Titulo
+        </option>
+    }
+</select>
+--->

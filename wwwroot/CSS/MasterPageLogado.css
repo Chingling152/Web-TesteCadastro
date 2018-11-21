@@ -1,3 +1,9 @@
-.cadastro-nav > a{
+.cadastro-nav > a , .cadastro-nav > h1{
+    text-align: center;
     margin:0.2em 0em;
+}
+
+.navgroup{
+    display: flex;  
+    
 }
