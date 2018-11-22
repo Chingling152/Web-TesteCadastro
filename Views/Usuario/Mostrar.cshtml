@@ -22,6 +22,7 @@
                 <td>Privilegio</td>
                 <td>Data de nascimento</td>
                 <td>Excluir</td>
+                <td>Editar</td>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,9 @@
                     <td>@item.DataNascimento</td>
                     <td>
                         <a href= "/Usuario/Excluir?id=@item.ID">Excluir</a>
+                    </td>
+                    <td>
+                        <a href= "/Usuario/Editar?id=@item.ID">Editar</a>
                     </td>
                 </tr>
             }

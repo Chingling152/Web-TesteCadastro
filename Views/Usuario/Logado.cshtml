@@ -1,5 +1,6 @@
+@using Web_TesteCadastroMVC.Models;
 <!DOCTYPE html>
-<html lang="PT">
+<html lang="PT-BR">
 <head>
     <meta charset="UTF-8">
     <title>Pagina Inicial</title>
@@ -19,7 +20,7 @@
                 E que as crianças não tem palavras para descrever
             </p>
         
-            @if(ViewData["TipoUsuario"] as string == "Administrador"){
+            @if((ViewData["UsuarioLogado"] as Usuario).Tipo == "Administrador"){
                 <nav class="flex-column">
                     <h2>Comandos Administrador</h2>
                     <a href="/Usuario/Mostrar">Mostrar Usuarios</a>

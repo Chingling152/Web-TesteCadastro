@@ -10,10 +10,10 @@
 <body class="flex-column">    
     <section>
         <h1>Cadastrar Usuario</h1>
-        @ViewBag.Mensagem
+        <h2>@ViewBag.Mensagem</h2>
         <form action = "/Usuario/Cadastrar" method="POST" class="flex-column">
             <label>Nome
-                <input type="text" maxlength="50" name = "Nome" placeholder="Ex :João da Silva" required>
+                <input type="text" minlength="2" maxlength="50" name = "Nome" placeholder="Ex :João da Silva" required>
             </label>
             <label>Email
                 <input type="email" name="Email" placeholder="Ex : joaodasilva@hotmail.com" required>

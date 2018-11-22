@@ -4,20 +4,20 @@ using Web_TesteCadastroMVC.Models;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using Web_TesteCadastroMVC.Repositorio;
 
 namespace Web_TesteCadastroMVC.Controllers
 {
     public class TarefaController : Controller
     {
-        #region Criar
-        private const string caminho = "Databases/Tarefa.csv";
-        private int contador = System.IO.File.Exists(caminho)?System.IO.File.ReadAllLines(caminho).Length +1 : 1;     
+        #region Criar   
+        private TarefaDatabase database;
         private string id;
         [HttpGet]
         public ActionResult Criar(){
             id = HttpContext.Session.GetString("ID");
             
-            if(string.IsNullOrEmpty(id) || id != "0"){
+            if(string.IsNullOrEmpty(id) || id == "0"){
                 return RedirectToAction("Login","Usuario");
             }else{
                 return View();
@@ -26,30 +26,24 @@ namespace Web_TesteCadastroMVC.Controllers
 
         [HttpPost]
         public ActionResult Criar(IFormCollection form){
-            string id = HttpContext.Session.GetString("ID");
+            /*id = HttpContext.Session.GetString("ID");
 
             if(string.IsNullOrEmpty(id) || id != "0"){
                 return RedirectToAction("Login","Usuario");
-            }else{
-                Tarefa tarefa = new Tarefa(){
-                    ID = contador++,
+            }else{*/
+                Tarefa tarefa = database.Cadastrar(new Tarefa(){
                     Titulo = form["Titulo"],
                     Descricao = form["Descricao"],
                     Status = form["Status"],
                     DataInicio = DateTime.Now,
                     SetDataEntrega = DateTime.Parse(form["Data"]),
                     IDUsuario = int.Parse(id)
-                };
-
-                using (StreamWriter sw = new StreamWriter(caminho,true))
-                {
-                    sw.WriteLine($"{tarefa.ID};{tarefa.Titulo};{tarefa.Descricao};{tarefa.Status};{tarefa.DataInicio};{tarefa.GetDataEntrega};{tarefa.IDUsuario}");
-                }
+                });
 
                 ViewBag.Mensagem = $"Tarefa {tarefa.Titulo} Cadastrada no ID {tarefa.ID} com sucesso!";
                 
                 return View();
-            }
+            //}
         }
         #endregion
 
@@ -58,28 +52,9 @@ namespace Web_TesteCadastroMVC.Controllers
         public ActionResult Mostrar(){
             id = HttpContext.Session.GetString("ID");
 
-            List<Tarefa> tarefas = new List<Tarefa>();
+            List<Tarefa> tarefas = database.Listar(id);
 
-            string[] linhas = System.IO.File.ReadAllLines(caminho);
-
-            foreach(string item in linhas){
-
-                string[] linha = item.Split(";");
-
-                if(!String.IsNullOrEmpty(linha[0]) && linha[linha.Length-1] == id){
-                    tarefas.Add(
-                        new Tarefa(){
-                            ID = int.Parse(linha[0]),
-                            Titulo = linha[1],
-                            Descricao = linha[2],
-                            Status = linha[3],
-                            DataInicio = DateTime.Parse(linha[4]),
-                            SetDataEntrega = DateTime.Parse(linha[5]),
-                            IDUsuario = int.Parse(linha[6])
-                        }
-                    );
-                }
-            }
+            
             ViewData["ListarTarefas"] = tarefas;
 
             return View();
