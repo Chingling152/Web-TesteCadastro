@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Tarefa</title>
+    @{
+        Layout = "MasterPageLogado";
+    }
+</head>
+<body class="flex-column">
+    <section>
+        <h1></h1>
+        <form action="/Tarefa/Editar" class="flex-column">
+            <label>ID
+                <input type="number" disabled value="">
+            </label>
+            <label>Nome
+                <input type="text" name="Nome" required>
+            </label>
+            <label>Email
+                <input type="email" name="Email" required>
+            </label>
+            <label>Senha
+                <input type="text" name="" minlength="8" required>
+            </label>
+            <input type="submit" value="Editar">
+        </form>
+    </section>
+</body>
+</html>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using Web_TesteCadastroMVC.Interfaces;
 using Web_TesteCadastroMVC.Models;
-using Web_TesteCadastroMVC.Util;
 
 namespace Web_TesteCadastroMVC.Repositorio
 {
@@ -110,7 +109,7 @@ namespace Web_TesteCadastroMVC.Repositorio
         /// Verifica se existe algum email igual ao inserido no banco de dados
         /// </summary>
         /// <param name="email">o Email a ser verificado</param>
-        /// <returns></returns>
+        /// <returns>True se o email existe no banco de dados e false se não existe nenhum email como esse no banco de dados</returns>
         private bool EmailExiste(string email){
             bool valor = false;
             string[] usuarios = System.IO.File.ReadAllLines(caminho);

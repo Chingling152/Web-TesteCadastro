@@ -19,17 +19,30 @@ namespace Web_TesteCadastroMVC.Repositorio
             }
 
             return tarefa;
-
         }
 
-        public Tarefa Editar(Tarefa tarefa)
+        public Tarefa Editar(Tarefa tarefa, string UserID)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public bool Excluir(string id)
+        public bool Excluir(string ID,string UserID)
         {
-            throw new System.NotImplementedException();
+            bool flag = false;
+            string[] linhas = System.IO.File.ReadAllLines(caminho);
+
+            for (int i = 0; i < linhas.Length; i++)
+            {
+                string[] linha = linhas[i].Split(";");
+
+                if(ID.ToString() == linha[0]&&UserID == linha[linha.Length-1]){
+                    linhas[i] = "";    
+                    flag = true;
+                }
+            }
+
+            System.IO.File.WriteAllLines(caminho,linhas);
+            return flag;
         }
 
         public List<Tarefa> Listar(string id)
@@ -60,7 +73,7 @@ namespace Web_TesteCadastroMVC.Repositorio
 
         public Tarefa Procurar(string id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

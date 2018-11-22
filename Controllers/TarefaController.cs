@@ -11,7 +11,7 @@ namespace Web_TesteCadastroMVC.Controllers
     public class TarefaController : Controller
     {
         #region Criar   
-        private TarefaDatabase database;
+        private TarefaDatabase database = new TarefaDatabase();
         private string id;
         [HttpGet]
         public ActionResult Criar(){
@@ -26,8 +26,8 @@ namespace Web_TesteCadastroMVC.Controllers
 
         [HttpPost]
         public ActionResult Criar(IFormCollection form){
-            /*id = HttpContext.Session.GetString("ID");
-
+            id = HttpContext.Session.GetString("ID");
+            /*
             if(string.IsNullOrEmpty(id) || id != "0"){
                 return RedirectToAction("Login","Usuario");
             }else{*/
@@ -51,37 +51,41 @@ namespace Web_TesteCadastroMVC.Controllers
         [HttpGet]
         public ActionResult Mostrar(){
             id = HttpContext.Session.GetString("ID");
-
             List<Tarefa> tarefas = database.Listar(id);
-
-            
             ViewData["ListarTarefas"] = tarefas;
-
             return View();
         }
         #endregion
 
         public ActionResult Excluir(int ID){
-            string[] linhas = System.IO.File.ReadAllLines(caminho);
             id = HttpContext.Session.GetString("ID");
 
-            for (int i = 0; i < linhas.Length; i++)
-            {
-                string[] linha = linhas[i].Split(";");
-
-                if(ID.ToString() == linha[0]){
-                    if(id == linha[linha.Length-1]){
-                        ViewBag.Mensagem = $"Tarefa no id {id} deletado com sucesso";
-                        linhas[i] = "";
-                    }else{
-                        ViewBag.Mensagem = $"Você não tem permissão para apagar essa tarefa";
-                    }
-                }
+            if(database.Excluir(ID.ToString(),id)){
+                ViewBag.Mensagem = $"Tarefa no id {id} deletado com sucesso";
+            }else{
+                ViewBag.Mensagem = $"Você não tem permissão para apagar essa tarefa";
             }
-
-            System.IO.File.WriteAllLines(caminho,linhas);
-
             return RedirectToAction("Mostrar","Tarefa");
         }
+
+        [HttpGet]
+        public ActionResult Editar(int ID){
+            if(ID != 0){
+                Tarefa tarefa = database.Procurar(ID.ToString());
+                Usuario user = new UsuarioDatabase().Procurar(tarefa.IDUsuario.ToString());
+                //Finalizar isso ;-;
+                //https://github.com/corujasdevbr/Senai_Financas_Web_Mvc_Manha
+                return View();
+            }else{
+                return RedirectToAction("Logado","Usuario");
+            }
+        }
+        
+        [HttpPost]
+        public ActionResult Editar(IFormCollection form){
+            
+            return RedirectToAction("Mostrar","Tarefa");
+        }
+
     }
 }
