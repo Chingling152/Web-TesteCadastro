@@ -1,10 +1,19 @@
 using System;
 namespace Web_TesteCadastroMVC.Models
 {
+    [System.Serializable]
     public class Usuario
     {
         public int ID ;
+        /// <summary>
+        /// [Apenas leitura]  
+        /// Define o nome do Usuario
+        /// </summary>
         public readonly string Nome;
+        /// <summary>
+        /// [Apenas leitura]  
+        /// Define o email do Usuario
+        /// </summary>
         public readonly string Email;
         public readonly string Senha;
         public readonly string Tipo;

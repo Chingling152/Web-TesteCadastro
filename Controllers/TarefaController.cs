@@ -5,14 +5,16 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using Web_TesteCadastroMVC.Repositorio;
+using Web_TesteCadastroMVC.Interfaces;
 
 namespace Web_TesteCadastroMVC.Controllers
 {
     public class TarefaController : Controller
     {
         #region Criar   
-        private TarefaDatabase database = new TarefaDatabase();
+        private ITarefa database = new TarefaDatabaseSerializado();
         private string id;
+
         [HttpGet]
         public ActionResult Criar(){
             id = HttpContext.Session.GetString("ID");
@@ -71,7 +73,7 @@ namespace Web_TesteCadastroMVC.Controllers
         public ActionResult Editar(int ID){
             if(ID != 0){
                 Tarefa tarefa = database.Procurar(ID.ToString());
-                Usuario user = new UsuarioDatabase().Procurar(tarefa.IDUsuario.ToString());
+                Usuario user = new UsuarioDatabaseSerializado().Procurar(tarefa.IDUsuario.ToString());
                 //Finalizar isso ;-;
                 //https://github.com/corujasdevbr/Senai_Financas_Web_Mvc_Manha
                 return View();

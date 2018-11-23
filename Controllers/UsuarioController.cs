@@ -1,14 +1,19 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Web_TesteCadastroMVC.Interfaces;
 using Web_TesteCadastroMVC.Models;
 using Web_TesteCadastroMVC.Repositorio;
 
-namespace Web_TesteCadastroMVC.Controllers {
+namespace Web_TesteCadastroMVC.Controllers
+{
     public class UsuarioController : Controller {
 
-        private UsuarioDatabase database = new UsuarioDatabase ();
+        /// <summary>
+        /// Caso queira mudar o tipo de arquivo só mudar o tipo que a variavel é instanciada
+        /// </summary>
+        /// <returns></returns>
+        private IUsuario database = new UsuarioDatabaseSerializado();
         private string id;
 
         #region Cadastrar
@@ -99,7 +104,8 @@ namespace Web_TesteCadastroMVC.Controllers {
         [HttpGet]
         public ActionResult Editar (int ID) {
             id = HttpContext.Session.GetString ("ID");
-            database.Procurar (id);
+            Usuario user = database.Procurar (id);
+            
             return View ();
         }
     }
