@@ -13,7 +13,7 @@ namespace Web_TesteCadastroMVC.Controllers
         /// Caso queira mudar o tipo de arquivo só mudar o tipo que a variavel é instanciada
         /// </summary>
         /// <returns></returns>
-        private IUsuario database = new UsuarioDatabaseSerializado();
+        private IUsuario database = new UsuarioDatabase();//Serializado();
         private string id;
 
         #region Cadastrar
@@ -23,22 +23,10 @@ namespace Web_TesteCadastroMVC.Controllers
         [HttpPost]
         public ActionResult Cadastrar (IFormCollection form) {
 
-            string[] valores = {
-                "0",
-                form["Nome"],
-                form["Email"].ToString ().ToLower (),
-                form["Senha"],
-                form["Tipo"],
-                form["DataNascimento"]    
-            };
-
-            Usuario usuario = database.Cadastrar (new Usuario(valores));
-
-            if (usuario == null) {
+            if (database.Cadastrar (new Usuario("0",form["Nome"],form["Email"].ToString ().ToLower (),form["Senha"],form["Tipo"],form["DataNascimento"])) == null) {
                 ViewBag.Mensagem = "Esse Email Já existe";
                 return View ();
             } else {
-
                 return RedirectToAction ("Login", "Usuario");
             }
         }

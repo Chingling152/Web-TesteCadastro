@@ -1,5 +1,6 @@
 namespace Web_TesteCadastroMVC.Models
 {
+    [System.Serializable]
     public class Transacao
     {
         public int NumeroTransacao;

@@ -25,6 +25,8 @@ namespace Web_TesteCadastroMVC.Repositorio
             if(!EmailExiste(usuario.Email)){
                 usuariosSalvos.Add(usuario);
                 Serializar();
+            }else{
+                usuario = null;
             }
 
             return usuario;

@@ -44,7 +44,7 @@ namespace AspNetCore
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"PT-BR\">\r\n");
             EndContext();
             BeginContext(38, 139, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "30da7e277c5246c0a8696b8565921c69", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a3eb460520874a60b742a3b5c66da6eb", async() => {
                 BeginContext(44, 70, true);
                 WriteLiteral("\r\n    <meta charset=\"utf-8\" />\r\n    <title>Cadastrar Usuario</title>\r\n");
                 EndContext();
@@ -71,7 +71,7 @@ namespace AspNetCore
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(179, 1291, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa9292d1d13244b98d8d5b8b0408ae6c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "386a232f5c39497dac7b1a65ee3e4a1a", async() => {
                 BeginContext(205, 69, true);
                 WriteLiteral("    \r\n    <section>\r\n        <h1>Cadastrar Usuario</h1>\r\n        <h2>");
                 EndContext();

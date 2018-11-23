@@ -42,6 +42,7 @@ namespace Web_TesteCadastroMVC.Models
         }
 
         public Usuario(string ID,string Nome,string Email,string Senha,string Tipo,string DataNascimento){
+            this.ID = int.Parse(ID);
             this.Nome = Nome;
             this.Email = Email;
             this.Senha = Senha;

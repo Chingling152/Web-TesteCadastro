@@ -12,7 +12,7 @@ namespace Web_TesteCadastroMVC.Controllers
     public class TarefaController : Controller
     {
         #region Criar   
-        private ITarefa database = new TarefaDatabaseSerializado();
+        private ITarefa database = new TarefaDatabase();//Serializado();
         private string id;
 
         [HttpGet]

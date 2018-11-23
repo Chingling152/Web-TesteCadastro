@@ -44,7 +44,7 @@ namespace AspNetCore
             WriteLiteral("<!DOCTYPE html>\r\n<html>\r\n");
             EndContext();
             BeginContext(25, 138, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "43ddf08201144393a039148637acac21", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7c0b76af845d4ac696a40fe61619282a", async() => {
                 BeginContext(31, 125, true);
                 WriteLiteral("\r\n    <link rel=\"stylesheet\" href=\"/CSS/default.css\">\r\n    <meta charset=\"utf-8\" />\r\n    <title>Cadastro Transações</title>\r\n");
                 EndContext();
@@ -64,7 +64,7 @@ namespace AspNetCore
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(165, 961, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c61d4cfaa8334ef394fdb4662e9c797f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b8e318244ad24f0b9493952d69c67bf3", async() => {
                 BeginContext(191, 66, true);
                 WriteLiteral("\r\n    <section>\r\n        <h1>Cadastrar Transação</h1>\r\n        <p>");
                 EndContext();
