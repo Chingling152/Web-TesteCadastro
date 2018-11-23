@@ -8,19 +8,15 @@ namespace Web_TesteCadastroMVC.Repositorio
 {
     public class UsuarioDatabase : IUsuario
     {
-        private const string caminho = "Databases/Usuario.csv";
+        private const string caminho = "Databases/Usuario.dat";
         private int contador = System.IO.File.Exists(caminho)?System.IO.File.ReadAllLines(caminho).Length +1 : 1;  
-
+        
         #region CRUM
-        /// <summary>
-        /// Verifica se o email do usuario já é ultilizado , cria um ID parar ele e armazena no banco de dados
-        /// </summary>
-        /// <param name="usuario">O Usuario a ser cadastrado no banco de dados</param>
-        /// <returns>null se o email já existir , Um usuario se o email cadastrado não existir no banco de dados</returns>
+        
         public Usuario Cadastrar(Usuario usuario)
         {
+            
             if(!EmailExiste(usuario.Email)){
-                usuario.ID = contador++;
                 using(StreamWriter sw = new StreamWriter(caminho,true)){
                     sw.WriteLine($"{usuario.ID};{usuario.Nome};{usuario.Email};{usuario.Senha};{usuario.Tipo};{usuario.DataNascimento}");
                 }
@@ -84,14 +80,7 @@ namespace Web_TesteCadastroMVC.Repositorio
             foreach(string item in usuarios){     
                 string[] usuario = item.Split(";");
                 if(usuario[0] == id){
-                    user = new Usuario(){
-                        ID = int.Parse(id),
-                        Nome = usuario[1],
-                        Email = usuario[2],
-                        Senha = usuario[3],
-                        Tipo = usuario[4],
-                        DataNascimento = DateTime.Parse(usuario[5])
-                    };
+                    user = new Usuario(usuario);
                     break;
                 }
             }
@@ -125,6 +114,12 @@ namespace Web_TesteCadastroMVC.Repositorio
             return valor;
         }
 
+        /// <summary>
+        /// Procura um email no banco de dados e verifica se a senha é a mesma que a inserida
+        /// </summary>
+        /// <param name="email">Email do usuario</param>
+        /// <param name="senha">Senha do usuario</param>
+        /// <returns>Retorna um usuario se a senha e o email coincidirem</returns>
         public Usuario Logar(string email, string senha)
         {
             Usuario usuario = null;

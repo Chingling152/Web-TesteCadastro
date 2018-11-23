@@ -31,15 +31,14 @@ namespace Web_TesteCadastroMVC.Controllers
             if(string.IsNullOrEmpty(id) || id != "0"){
                 return RedirectToAction("Login","Usuario");
             }else{*/
-                Tarefa tarefa = database.Cadastrar(new Tarefa(){
-                    Titulo = form["Titulo"],
-                    Descricao = form["Descricao"],
-                    Status = form["Status"],
-                    DataInicio = DateTime.Now,
-                    SetDataEntrega = DateTime.Parse(form["Data"]),
-                    IDUsuario = int.Parse(id)
-                });
 
+                Tarefa tarefa = database.Cadastrar(new Tarefa(
+                    form["Titulo"],
+                    form["Descricao"],
+                    form["Status"],
+                    form["Data"],
+                    id
+                ));
                 ViewBag.Mensagem = $"Tarefa {tarefa.Titulo} Cadastrada no ID {tarefa.ID} com sucesso!";
                 
                 return View();

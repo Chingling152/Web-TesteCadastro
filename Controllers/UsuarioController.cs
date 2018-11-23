@@ -18,13 +18,16 @@ namespace Web_TesteCadastroMVC.Controllers {
         [HttpPost]
         public ActionResult Cadastrar (IFormCollection form) {
 
-            Usuario usuario = database.Cadastrar (new Usuario () {
-                Nome = form["Nome"],
-                    Email = form["Email"].ToString ().ToLower (),
-                    Senha = form["Senha"],
-                    Tipo = form["Tipo"],
-                    DataNascimento = DateTime.Parse (form["DataNascimento"])
-            });
+            string[] valores = {
+                "0",
+                form["Nome"],
+                form["Email"].ToString ().ToLower (),
+                form["Senha"],
+                form["Tipo"],
+                form["DataNascimento"]    
+            };
+
+            Usuario usuario = database.Cadastrar (new Usuario(valores));
 
             if (usuario == null) {
                 ViewBag.Mensagem = "Esse Email Já existe";
