@@ -36,13 +36,14 @@ namespace Web_TesteCadastroMVC.Repositorio
             if(user==null){
                 return false;
             }else{
-                usuariosSalvos.Remove(user);
+                usuariosSalvos.RemoveAt(ProcurarIndex(user));
                 Serializar();
                 return true;
             }
 
         }
-        
+        #endregion
+        #region Procura
         public Usuario Procurar(string id){
             Usuario user = null;
             foreach (Usuario item in usuariosSalvos)
@@ -55,9 +56,25 @@ namespace Web_TesteCadastroMVC.Repositorio
             return user;
         }
 
+        public int ProcurarIndex(Usuario usuario){
+            int index = 0;
+
+            foreach (Usuario item in usuariosSalvos)
+            {
+                if(usuario.ID == item.ID){
+                    return index;
+                }
+                index ++;
+            }
+            return -1;
+        }
+
         public Usuario Editar(Usuario usuario)
         {
-            throw new System.NotImplementedException();
+            int index = ProcurarIndex(usuario);
+            usuariosSalvos.RemoveAt(index);
+            usuariosSalvos.Insert(index,usuario);
+            return usuario;
         }
         #endregion
         
