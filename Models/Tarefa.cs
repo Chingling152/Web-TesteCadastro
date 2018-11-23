@@ -1,9 +1,10 @@
 using System;
 namespace Web_TesteCadastroMVC.Models
 {
+    [System.Serializable]
     public class Tarefa
     {
-        public readonly int ID;
+        public int ID;
         public readonly string Titulo;
         public readonly string Descricao;
         public readonly string Status;
