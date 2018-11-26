@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Web_TesteCadastroMVC.Interfaces;
 using Web_TesteCadastroMVC.Models;
+using Web_TesteCadastroMVC.Util;
 
 namespace Web_TesteCadastroMVC.Repositorio
 {
@@ -10,22 +11,18 @@ namespace Web_TesteCadastroMVC.Repositorio
     {
         private const string caminho = "Databases/Usuario.csv";
         private int contador = System.IO.File.Exists(caminho)?System.IO.File.ReadAllLines(caminho).Length +1 : 1;  
-
+        private IValidacaoUsuario validacao = new ValidacaoUsuario();
         #region CRUM
         /// <summary>
-        /// Verifica se o email do usuario já é ultilizado , cria um ID parar ele e armazena no banco de dados
+        /// Cadastra o usuario no banco de dados
         /// </summary>
-        /// <param name="usuario">O Usuario a ser cadastrado no banco de dados</param>
-        /// <returns>null se o email já existir , Um usuario se o email cadastrado não existir no banco de dados</returns>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
         public Usuario Cadastrar(Usuario usuario)
-        {
-            if(!EmailExiste(usuario.Email)){
-                usuario.ID = contador++;
-                using(StreamWriter sw = new StreamWriter(caminho,true)){
-                    sw.WriteLine($"{usuario.ID};{usuario.Nome};{usuario.Email};{usuario.Senha};{usuario.Tipo};{usuario.DataNascimento}");
-                }
-            }else{
-                usuario = null;
+        { 
+            usuario.ID = contador++;
+            using(StreamWriter sw = new StreamWriter(caminho,true)){
+                sw.WriteLine($"{usuario.ID};{usuario.Nome};{usuario.Email};{usuario.Senha};{usuario.Tipo};{usuario.DataNascimento}");
             }
 
             return usuario;
@@ -97,30 +94,7 @@ namespace Web_TesteCadastroMVC.Repositorio
         #endregion
         
         #region Verificação
-        /// <summary>
-        /// Verifica se existe algum email igual ao inserido no banco de dados
-        /// </summary>
-        /// <param name="email">o Email a ser verificado</param>
-        /// <returns>True se o email existe no banco de dados e false se não existe nenhum email como esse no banco de dados</returns>
-        public bool EmailExiste(string email){
-            bool valor = false;
-            string[] usuarios = System.IO.File.ReadAllLines(caminho);
-
-            foreach(string item in usuarios){     
-                string Email = item.Split(";")[2];
-                if(Email == email){
-                    valor = true;
-                    break;
-                }
-            }
-
-            return valor;
-        }
-
-        public bool DataValida(DateTime data){
-            return false;
-        }
-
+        
         public Usuario Logar(string email, string senha)
         {
             Usuario usuario = null;
@@ -137,6 +111,7 @@ namespace Web_TesteCadastroMVC.Repositorio
             }
             return usuario;
         }
+
         #endregion
     }
 }

@@ -5,13 +5,14 @@ namespace Web_TesteCadastroMVC.Interfaces
 {
     public interface IUsuario
     {
+        #region Criar Remover Editar e Atualizar
         Usuario Cadastrar(Usuario usuario);
+        bool Excluir(string id);
         Usuario Editar(Usuario usuario);
         List<Usuario> Listar();
-        bool Excluir(string id);
+        #endregion
+        
         Usuario Procurar(string id);
         Usuario Logar(string email,string senha);
-        bool EmailExiste(string email);
-        bool DataValida(System.DateTime data);
     } 
 }

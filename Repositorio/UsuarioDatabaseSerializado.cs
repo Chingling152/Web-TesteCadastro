@@ -4,12 +4,14 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Web_TesteCadastroMVC.Interfaces;
 using Web_TesteCadastroMVC.Models;
+using Web_TesteCadastroMVC.Util;
 
 namespace Web_TesteCadastroMVC.Repositorio
 {
     public class UsuarioDatabaseSerializado : IUsuario
     {
         private const string caminho = "Databases/Usuario.dat";
+        private IValidacaoUsuario validacao = new ValidacaoUsuarioSerializado();
         private List<Usuario> usuariosSalvos;
         public UsuarioDatabaseSerializado(){
             bool existe = System.IO.File.Exists(caminho);
@@ -21,13 +23,9 @@ namespace Web_TesteCadastroMVC.Repositorio
         public Usuario Cadastrar(Usuario usuario)
         {
             usuario.ID = usuariosSalvos.Count+1;
-
-            if(!EmailExiste(usuario.Email)){
-                usuariosSalvos.Add(usuario);
-                Serializar();
-            }else{
-                usuario = null;
-            }
+            
+            usuariosSalvos.Add(usuario);
+            Serializar();
 
             return usuario;
         }
@@ -81,20 +79,6 @@ namespace Web_TesteCadastroMVC.Repositorio
         #endregion
         
         #region Verificação
-        private bool EmailExiste(string email){
-            bool valor = false;
-
-            foreach (Usuario item in usuariosSalvos)
-            {
-                if(item.Email == email){
-                    valor = true;
-                    break;
-                }
-            }
-
-            return valor;
-        }
-
         public Usuario Logar(string email, string senha)
         {
             Usuario usuario = null;

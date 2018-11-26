@@ -33,8 +33,7 @@ namespace Web_TesteCadastroMVC.Models
             DataNascimento = DateTime.Parse(valores[5]);
         }
 
-        public Usuario(string ID,string Nome,string Email,string Senha,string Tipo,string DataNascimento){
-            this.ID = int.Parse(ID);
+        public Usuario(string Nome,string Email,string Senha,string Tipo,string DataNascimento){
             this.Nome = Nome;
             this.Email = Email;
             this.Senha = Senha;
