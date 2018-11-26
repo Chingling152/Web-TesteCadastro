@@ -63,8 +63,7 @@ namespace Web_TesteCadastroMVC.Repositorio
                     continue;
                 }else{
                     Usuario user = Procurar(item.Split(";")[0]);
-
-                    if(user !=null){
+                    if(user != null){
                         usuarios.Add(user);
                     }
                 }
@@ -103,7 +102,7 @@ namespace Web_TesteCadastroMVC.Repositorio
         /// </summary>
         /// <param name="email">o Email a ser verificado</param>
         /// <returns>True se o email existe no banco de dados e false se não existe nenhum email como esse no banco de dados</returns>
-        private bool EmailExiste(string email){
+        public bool EmailExiste(string email){
             bool valor = false;
             string[] usuarios = System.IO.File.ReadAllLines(caminho);
 
@@ -118,6 +117,10 @@ namespace Web_TesteCadastroMVC.Repositorio
             return valor;
         }
 
+        public bool DataValida(DateTime data){
+            return false;
+        }
+
         public Usuario Logar(string email, string senha)
         {
             Usuario usuario = null;
@@ -128,6 +131,7 @@ namespace Web_TesteCadastroMVC.Repositorio
 
                     if(email == info[2].ToLower() && senha == info[3].ToLower()){
                         usuario = Procurar(info[0]);
+                        break;
                     }
                 }
             }

@@ -58,6 +58,7 @@ namespace Web_TesteCadastroMVC.Controllers
         }
         #endregion
 
+        [HttpGet]
         public ActionResult Excluir(int ID){
             id = HttpContext.Session.GetString("ID");
 
@@ -74,6 +75,8 @@ namespace Web_TesteCadastroMVC.Controllers
             if(ID != 0){
                 Tarefa tarefa = database.Procurar(ID.ToString());
                 Usuario user = new UsuarioDatabaseSerializado().Procurar(tarefa.IDUsuario.ToString());
+                ViewData["Tarefa"] = tarefa;
+                ViewData["Usuario"] = user;
                 //Finalizar isso ;-;
                 //https://github.com/corujasdevbr/Senai_Financas_Web_Mvc_Manha
                 return View();

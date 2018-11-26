@@ -29,9 +29,9 @@ namespace Web_TesteCadastroMVC.Models
             Titulo = valores[1];
             Descricao = valores[2];
             Status = valores[3];
-            DataInicio = DateTime.Now;
-            DataEntrega = DateTime.Parse(valores[4]);
-            IDUsuario = int.Parse(valores[5]);
+            DataInicio = DateTime.Parse(valores[4]);
+            DataEntrega = DateTime.Parse(valores[5]);
+            IDUsuario = int.Parse(valores[6]);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Web_TesteCadastroMVC.Models
         /// <param name="Status">Status da tarefa</param>
         /// <param name="DataEntrega">Data de entrega da tarefa</param>
         /// <param name="IDUsuario">ID do usuario que criou a tarefa</param>
-        public Tarefa(string Titulo,string Descricao,string Status,string DataEntrega,String IDUsuario){
+        public Tarefa(string Titulo,string Descricao,string Status,string DataEntrega,string IDUsuario){
             this.Titulo = Titulo;
             this.Descricao = Descricao;
             this.Status = Status;

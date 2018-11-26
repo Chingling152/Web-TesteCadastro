@@ -9,5 +9,9 @@ namespace Web_TesteCadastroMVC.Models
         public string tipo;
         public System.DateTime data;
         public int IDUsuario;
+
+        public Transacao(){
+            
+        }
     }
 }

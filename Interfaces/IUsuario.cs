@@ -11,5 +11,7 @@ namespace Web_TesteCadastroMVC.Interfaces
         bool Excluir(string id);
         Usuario Procurar(string id);
         Usuario Logar(string email,string senha);
+        bool EmailExiste(string email);
+        bool DataValida(System.DateTime data);
     } 
 }

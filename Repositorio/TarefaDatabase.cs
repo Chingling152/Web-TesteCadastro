@@ -10,6 +10,7 @@ namespace Web_TesteCadastroMVC.Repositorio
     {
         private const string caminho = "Databases/Tarefa.csv";
         private int contador;
+        
         public TarefaDatabase(){
             bool existe = System.IO.File.Exists(caminho);
             contador = existe?File.ReadAllLines(caminho).Length +1 : 1;  

@@ -22,8 +22,8 @@ namespace Web_TesteCadastroMVC.Controllers
 
         [HttpPost]
         public ActionResult Cadastrar (IFormCollection form) {
-
-            if (database.Cadastrar (new Usuario("0",form["Nome"],form["Email"].ToString ().ToLower (),form["Senha"],form["Tipo"],form["DataNascimento"])) == null) {
+            Usuario user = database.Cadastrar (new Usuario("0",form["Nome"],form["Email"].ToString ().ToLower (),form["Senha"],form["Tipo"],form["DataNascimento"])) ;
+            if (user == null) {
                 ViewBag.Mensagem = "Esse Email Já existe";
                 return View ();
             } else {
@@ -72,7 +72,6 @@ namespace Web_TesteCadastroMVC.Controllers
         public ActionResult Mostrar () {           
             List<Usuario> usuarios = database.Listar ();
             ViewData["Usuarios"] = usuarios;
-
             return View ();
         }
 

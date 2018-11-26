@@ -1,3 +1,4 @@
+@using Web_TesteCadastroMVC.Models;
 <!DOCTYPE html>
 <html lang="PT-BR">
 <head>
@@ -5,6 +6,7 @@
     <title>Editar Tarefa</title>
     @{
         Layout = "MasterPageLogado";
+        Tarefa tarefa = ViewData["Tarefa"] as Tarefa;
     }
 </head>
 <body class="flex-column">
@@ -12,7 +14,7 @@
         <h1></h1>
         <form action="/Tarefa/Editar" class="flex-column">
             <label>ID
-                <input type="number" disabled value="">
+                <input type="number" disabled>
             </label>
             <label>Nome
                 <input type="text" name="Nome" required>
